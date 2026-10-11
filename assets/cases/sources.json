@@ -1,5 +1,5 @@
 {
-  "purpose": "Representative RVG-Bench cases displayed on the project website. Questions, reference answers, and target intervals follow the final annotations. Full source video timelines and audio are preserved; display MP4 files are remuxed without re-encoding for progressive playback. Poster frames are taken at the midpoint of each target interval. VP9/Opus WebM previews provide an additional browser-compatible format at a maximum width of 960 pixels, with the complete source timeline and audio retained; MP4 originals remain available as a fallback.",
+  "purpose": "Representative RVG-Bench cases displayed on the project website. Questions derive from the final annotations; any display-only wording edits are recorded separately. Reference answers and target intervals follow the final annotations. Full source video timelines and audio are preserved; display MP4 files are remuxed without re-encoding for progressive playback. Poster frames are taken at the midpoint of each target interval. VP9/Opus WebM previews provide an additional browser-compatible format at a maximum width of 960 pixels, with the complete source timeline and audio retained; MP4 originals remain available as a fallback.",
   "cases": [
     {
       "sample_id": "Fun-QA/M_C_23_0000_0755.json#0",
@@ -37,7 +37,9 @@
         "height": 540,
         "video_start_sec": 0.007,
         "audio_start_sec": -0.007
-      }
+      },
+      "display_question": "What is the key deceptive action that secretly causes the ball to be under the cup for the final reveal?",
+      "display_edit": "User-requested wording clarification for the project page: key action → key deceptive action. The original annotation question is preserved in question."
     },
     {
       "sample_id": "daily/2zdYIRTUQYE_video.json#0",
