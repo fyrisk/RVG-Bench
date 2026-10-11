@@ -11,3 +11,5 @@ The page includes the full main results table: 18 models and a human reference, 
 This repository contains the static project website. Open `index.html` locally or serve this directory with `python -m http.server 8000`.
 
 GitHub Pages publishing source: `main` branch, repository root (`/`).
+
+Four interactive examples cover causal, character-centric, ordinal, and multi-step reasoning. Each includes a full video with audio, the final reference answer, and a button to play the annotated interval. Media provenance is recorded in `assets/cases/sources.json`.

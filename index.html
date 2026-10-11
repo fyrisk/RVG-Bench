@@ -13,7 +13,7 @@
   <title>RVG-Bench — Reasoning-Driven Audio-Visual Temporal Grounding</title>
   <link rel="canonical" href="https://fyrisk.github.io/RVG-Bench/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=9637e33423">
+  <link rel="stylesheet" href="styles.css?v=68ef803469">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -46,7 +46,7 @@
           <span>Dataset</span><span class="status">Coming soon</span>
         </button>
       </div>
-      <nav class="section-nav" aria-label="Page sections"><a href="#abstract">Abstract</a><a href="#overview">Overview</a><a href="#benchmark">Benchmark</a><a href="#results">Results</a></nav>
+      <nav class="section-nav" aria-label="Page sections"><a href="#abstract">Abstract</a><a href="#overview">Overview</a><a href="#benchmark">Benchmark</a><a href="#results">Results</a><a href="#examples">Examples</a></nav>
     </div>
   </header>
 
@@ -153,6 +153,95 @@
         </div>
       </div>
     </section>
+
+    <section class="section tinted" id="examples" aria-labelledby="examples-title">
+      <div class="container">
+        <h2 id="examples-title">Example Cases</h2>
+        <p class="section-intro">Four examples from the final benchmark. Watch the full video for context, or play the reference interval to see the target event.</p>
+        <div class="case-tabs" role="tablist" aria-label="Reasoning examples" hidden>
+          <button type="button" role="tab" id="case-tab-causal" aria-controls="case-causal" aria-selected="true" tabindex="0">Causal</button>
+          <button type="button" role="tab" id="case-tab-character" aria-controls="case-character" aria-selected="false" tabindex="-1">Character-centric</button>
+          <button type="button" role="tab" id="case-tab-ordinal" aria-controls="case-ordinal" aria-selected="false" tabindex="-1">Ordinal</button>
+          <button type="button" role="tab" id="case-tab-multistep" aria-controls="case-multistep" aria-selected="false" tabindex="-1">Multi-step</button>
+        </div>
+        <article class="case-panel" id="case-causal" data-sample-id="Fun-QA/M_C_23_0000_0755.json#0" data-start="9" data-end="12" aria-labelledby="case-heading-causal">
+          <p class="case-family">Relational reasoning</p>
+          <h3 id="case-heading-causal">Causal reasoning</h3>
+          <p class="case-query"><strong>Query:</strong> What is the key action that secretly causes the ball to be under the cup for the final reveal?</p>
+          <video class="case-video" controls playsinline preload="none" poster="assets/cases/causal.jpg" aria-label="Full video for the causal reasoning example">
+            <source src="assets/cases/causal.webm" type="video/webm">
+            <source src="assets/cases/causal.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+          <div class="case-playback">
+            <p><strong>Reference interval:</strong> 00:09–00:12 <span class="case-modality">Visual evidence</span></p>
+            <div class="case-actions" hidden>
+              <button type="button" data-play="target">Play reference interval</button>
+              <button type="button" data-play="full">Watch full video</button>
+            </div>
+          </div>
+          <p class="case-playback-status" role="status" aria-live="polite"></p>
+          <p class="case-answer"><strong>Reference answer:</strong> The magician turns the cup upside down and places it on the table, but intentionally does not pour the ball out, trapping it inside.</p>
+        </article>
+        <article class="case-panel" id="case-character" data-sample-id="daily/2zdYIRTUQYE_video.json#0" data-start="10" data-end="11" aria-labelledby="case-heading-character">
+          <p class="case-family">Intrinsic-attribute reasoning</p>
+          <h3 id="case-heading-character">Character-centric reasoning</h3>
+          <p class="case-query"><strong>Query:</strong> At what point does the red and black train, Victor, show a clear sign of exasperation?</p>
+          <video class="case-video" controls playsinline preload="none" poster="assets/cases/character.jpg" aria-label="Full video for the character-centric reasoning example">
+            <source src="assets/cases/character.webm" type="video/webm">
+            <source src="assets/cases/character.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+          <div class="case-playback">
+            <p><strong>Reference interval:</strong> 00:10–00:11 <span class="case-modality">Audio + visual evidence</span></p>
+            <div class="case-actions" hidden>
+              <button type="button" data-play="target">Play reference interval</button>
+              <button type="button" data-play="full">Watch full video</button>
+            </div>
+          </div>
+          <p class="case-playback-status" role="status" aria-live="polite"></p>
+          <p class="case-answer"><strong>Reference answer:</strong> Immediately after a crane hook crashes and the operator apologizes, Victor looks up and lets out an exasperated sigh.</p>
+        </article>
+        <article class="case-panel" id="case-ordinal" data-sample-id="worldsense/sCbtRgHy.json#0" data-start="54" data-end="55" aria-labelledby="case-heading-ordinal">
+          <p class="case-family">Relative-attribute reasoning</p>
+          <h3 id="case-heading-ordinal">Ordinal reasoning</h3>
+          <p class="case-query"><strong>Query:</strong> Locate the last time the boy speaks into his walkie-talkie during their mission.</p>
+          <video class="case-video" controls playsinline preload="none" poster="assets/cases/ordinal.jpg" aria-label="Full video for the ordinal reasoning example">
+            <source src="assets/cases/ordinal.webm" type="video/webm">
+            <source src="assets/cases/ordinal.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+          <div class="case-playback">
+            <p><strong>Reference interval:</strong> 00:54–00:55 <span class="case-modality">Audio + visual evidence</span></p>
+            <div class="case-actions" hidden>
+              <button type="button" data-play="target">Play reference interval</button>
+              <button type="button" data-play="full">Watch full video</button>
+            </div>
+          </div>
+          <p class="case-playback-status" role="status" aria-live="polite"></p>
+          <p class="case-answer"><strong>Reference answer:</strong> While hiding in the closet, the boy replies &#x27;Copy that&#x27; into his walkie-talkie just before scrambling to escape.</p>
+        </article>
+        <article class="case-panel" id="case-multistep" data-sample-id="videoholmes/5fje6_ou5RY.json#2" data-start="96" data-end="100" aria-labelledby="case-heading-multistep">
+          <p class="case-family">Compositional reasoning</p>
+          <h3 id="case-heading-multistep">Multi-step reasoning</h3>
+          <p class="case-query"><strong>Query:</strong> When does the protagonist discover that the supernatural mechanism has failed to produce the result observed in her earlier experiments?</p>
+          <video class="case-video" controls playsinline preload="none" poster="assets/cases/multistep.jpg" aria-label="Full video for the multi-step reasoning example">
+            <source src="assets/cases/multistep.webm" type="video/webm">
+            <source src="assets/cases/multistep.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+          <div class="case-playback">
+            <p><strong>Reference interval:</strong> 01:36–01:40 <span class="case-modality">Visual evidence</span></p>
+            <div class="case-actions" hidden>
+              <button type="button" data-play="target">Play reference interval</button>
+              <button type="button" data-play="full">Watch full video</button>
+            </div>
+          </div>
+          <p class="case-playback-status" role="status" aria-live="polite"></p>
+          <p class="case-answer"><strong>Reference answer:</strong> The protagonist realizes the supernatural mechanism has failed when she opens the closet door to find her husband has completely vanished. In her earlier experiments, she had placed a hanger and a doll into the closet and observed that both items multiplied. Relying on this established pattern, she playfully convinced her husband to step inside, expecting him to duplicate as well. Instead, seeing the visibly empty closet confirms a shocking deviation from the rule, instantly turning her mischievous expression into genuine concern.</p>
+        </article>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -161,5 +250,6 @@
       <p class="funding">This work was supported in part by the Beijing Major Science and Technology Project under Contract no. Z251100008425023.</p>
     </div>
   </footer>
+  <script src="cases.js?v=22ea7972f4" defer></script>
 </body>
 </html>
