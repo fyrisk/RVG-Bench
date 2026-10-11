@@ -4,103 +4,100 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="RVG-Bench: a benchmark for reasoning-driven audio-visual temporal grounding, with 1,255 videos and 1,890 reasoning queries.">
-  <meta name="theme-color" content="#184c61">
+  <meta name="theme-color" content="#183f64">
   <meta property="og:type" content="website">
   <meta property="og:title" content="RVG-Bench: Reasoning-Driven Audio-Visual Temporal Grounding">
-  <meta property="og:description" content="Find the right moment in a video by reasoning about intent, events, and audio-visual evidence. Paper, code, and dataset coming soon.">
+  <meta property="og:description" content="A benchmark for reasoning-driven audio-visual temporal grounding. Paper, code, and dataset coming soon.">
+  <meta property="og:url" content="https://fyrisk.github.io/RVG-Bench/">
   <meta name="twitter:card" content="summary">
   <title>RVG-Bench — Reasoning-Driven Audio-Visual Temporal Grounding</title>
+  <link rel="canonical" href="https://fyrisk.github.io/RVG-Bench/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <a class="wordmark" href="#top" aria-label="RVG-Bench home"><span class="brand-mark" aria-hidden="true">R</span>RVG-Bench</a>
-    <nav aria-label="Main navigation">
-      <a href="#overview">Overview</a>
-      <a href="#benchmark">Benchmark</a>
-      <a href="#abstract">Abstract</a>
-    </nav>
+  <header class="publication" id="top">
+    <div class="container">
+      <h1 id="paper-title"><span class="project-title">RVG-Bench</span><span class="paper-title">A Benchmark for Reasoning-Driven<br class="desktop-break"> Audio-Visual Temporal Grounding</span></h1>
+      <div class="authors" aria-label="Paper authors">
+        <span><a href="https://openreview.net/profile?id=~Yue_Feng7">Yue Feng</a><sup>1</sup>,</span>
+        <span><a href="https://openreview.net/profile?id=~Boshen_Xu1">Boshen Xu</a><sup>1</sup>,</span>
+        <span><a href="https://openreview.net/profile?id=~Zihao_Yue1">Zihao Yue</a><sup>1</sup>,</span>
+        <span><a href="https://openreview.net/profile?id=~Xiaokun_Liu3">Xiaokun Liu</a><sup>2,*</sup>,</span><br class="desktop-break">
+        <span><a href="https://openreview.net/profile?id=~Miao_Yang9">Miao Yang</a><sup>2</sup>,</span>
+        <span><a href="https://openreview.net/profile?id=~Xin_Tao3">Xin Tao</a><sup>2</sup>,</span>
+        <span><a href="https://openreview.net/profile?id=~Pengfei_Wan1">Pengfei Wan</a><sup>2</sup>,</span>
+        <span><a href="https://openreview.net/profile?id=~Qin_Jin1">Qin Jin</a><sup>1,†</sup></span>
+      </div>
+      <p class="affiliations"><span><sup>1</sup> AIM3 Lab, Renmin University of China</span><span><sup>2</sup> Kling AI</span></p>
+      <p class="author-notes">* Project leader. <span>† Corresponding author.</span></p>
+      <div class="resources" aria-label="Project resources">
+        <button class="resource" type="button" disabled aria-label="Paper: Coming soon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>
+          <span>Paper</span><span class="status">Coming soon</span>
+        </button>
+        <button class="resource" type="button" disabled aria-label="Code: Coming soon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></svg>
+          <span>Code</span><span class="status">Coming soon</span>
+        </button>
+        <button class="resource" type="button" disabled aria-label="Dataset: Coming soon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg>
+          <span>Dataset</span><span class="status">Coming soon</span>
+        </button>
+      </div>
+      <nav class="section-nav" aria-label="Page sections"><a href="#abstract">Abstract</a><a href="#overview">Overview</a><a href="#benchmark">Benchmark</a></nav>
+    </div>
   </header>
 
   <main id="main">
-    <section class="hero container" id="top" aria-labelledby="paper-title">
-      <p class="eyebrow">Reasoning · Audio · Vision · Time</p>
-      <h1 id="paper-title"><span class="title-name">RVG-Bench</span><span class="title-subtitle">A Benchmark for Reasoning-Driven<br class="desktop-break"> Audio-Visual Temporal Grounding</span></h1>
-      <p class="hero-intro">Understand the intent. Infer the event. Find the moment.</p>
-
-      <div class="authors" aria-label="Paper authors">
-        <span><a href="https://openreview.net/profile?id=~Yue_Feng7">Yue Feng</a><sup>1</sup></span>
-        <span><a href="https://openreview.net/profile?id=~Boshen_Xu1">Boshen Xu</a><sup>1</sup></span>
-        <span><a href="https://openreview.net/profile?id=~Zihao_Yue1">Zihao Yue</a><sup>1</sup></span>
-        <span><a href="https://openreview.net/profile?id=~Xiaokun_Liu3">Xiaokun Liu</a><sup>2*</sup></span>
-        <span><a href="https://openreview.net/profile?id=~Miao_Yang9">Miao Yang</a><sup>2</sup></span>
-        <span><a href="https://openreview.net/profile?id=~Xin_Tao3">Xin Tao</a><sup>2</sup></span>
-        <span><a href="https://openreview.net/profile?id=~Pengfei_Wan1">Pengfei Wan</a><sup>2</sup></span>
-        <span><a href="https://openreview.net/profile?id=~Qin_Jin1">Qin Jin</a><sup>1†</sup></span>
-      </div>
-      <div class="affiliations"><span><sup>1</sup> AIM3 Lab, Renmin University of China</span><span><sup>2</sup> Kling AI</span></div>
-      <p class="author-notes">* Project leader. <span>† Corresponding author.</span></p>
-
-      <!-- Release resources: replace a resource div with an anchor when its URL is public. -->
-      <div class="resources" id="resources" aria-label="Resource availability">
-        <div class="resource" aria-label="Paper: Coming soon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>
-          <span>Paper</span><span class="status">Coming soon</span>
-        </div>
-        <div class="resource" aria-label="Code: Coming soon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></svg>
-          <span>Code</span><span class="status">Coming soon</span>
-        </div>
-        <div class="resource" aria-label="Dataset: Coming soon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg>
-          <span>Dataset</span><span class="status">Coming soon</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="container overview" id="overview" aria-labelledby="overview-title">
-      <div class="section-heading"><span class="section-number">01 / THE TASK</span><h2 id="overview-title">Beyond matching a description.</h2></div>
-      <p class="section-intro">A query can describe an intent without naming the event. RVG-Bench asks a system to reason about what happened, resolve which event answers the query, and then localize it in time.</p>
-      <figure class="overview-figure">
-        <a href="assets/overview.png" aria-label="Open the full-size task illustration"><img src="assets/overview.png" alt="Comparison of descriptive and reasoning-driven grounding. A boy pours water on stairs; a later shot shows a burglar falling. The reasoning query asks for the action that caused the fall, requiring a link back to the earlier event." width="1812" height="639" fetchpriority="high"></a>
-        <figcaption><strong>From descriptive to reasoning-driven grounding.</strong> The target event is inferred from the query’s intent using visual and audio evidence. Select the figure to view it at full size.</figcaption>
-      </figure>
-      <div class="query-example"><span class="query-label">A reasoning-driven query</span><blockquote>“Locate the action that caused the burglar to fall.”</blockquote><p>Recognize the outcome, trace its cause, and localize the earlier action.</p></div>
-    </section>
-
-    <section class="benchmark-section" id="benchmark" aria-labelledby="benchmark-title">
+    <section class="section tinted" id="abstract" aria-labelledby="abstract-title">
       <div class="container">
-        <div class="section-heading"><span class="section-number">02 / THE BENCHMARK</span><h2 id="benchmark-title">Reasoning across events and modalities.</h2></div>
-        <dl class="statistics">
-          <div><dt>Videos</dt><dd>1,255</dd></div>
-          <div><dt>Query–interval pairs</dt><dd>1,890</dd></div>
-          <div><dt>Single-step reasoning types</dt><dd>8</dd></div>
-          <div><dt>Multi-step queries</dt><dd>302</dd></div>
-        </dl>
-        <div class="taxonomy">
-          <article><span class="taxonomy-index">01</span><h3>Intrinsic attributes</h3><p>Infer what an event implies: a character’s mental state, an unexpected occurrence, or a symbolic meaning.</p><p class="type-list">Character-centric · Anomaly · Symbolic</p></article>
-          <article><span class="taxonomy-index">02</span><h3>Relative attributes</h3><p>Compare candidate moments or reason about their positions in a sequence to identify the target.</p><p class="type-list">Comparative · Ordinal</p></article>
-          <article><span class="taxonomy-index">03</span><h3>Relations between events</h3><p>Follow causal, temporal, or referential connections from the event in the query to the target event.</p><p class="type-list">Causal · Sequential · Referential</p></article>
+        <h2 id="abstract-title">Abstract</h2>
+        <div class="reading-width abstract-copy">
+          <p>Existing temporal video grounding (TVG) benchmarks primarily focus on localizing target video segments according to descriptive text queries of the visual content. However, real-world queries are more diverse and often require the model to first understand the user’s intent before localization, such as finding visual evidence, identifying the cause of an event, or recalling a remembered moment, yet such queries remain largely overlooked.</p>
+          <p>To mitigate this gap, we introduce RVG-Bench, a benchmark for reasoning-driven audio-visual temporal grounding, where every query is constructed such that the target segment can only be identified through reasoning about the query’s underlying intent. We carefully construct the benchmark and rigorously verify its data quality to ensure models truly comprehend the audio-visual content. RVG-Bench comprises 1,255 videos and 1,890 query-interval pairs across eight reasoning types.</p>
+          <p>We evaluate 18 models and find that even Gemini-3-Pro achieves only 44.4 mIoU. Through a series of controlled analyses, including oracle-grounding probes and test-time scaling experiments, we systematically examine where and why current models struggle, providing insights for future model development.</p>
         </div>
-        <p class="multi-step-note"><strong>Multi-step reasoning</strong> combines two or more of these operations within a single query.</p>
       </div>
     </section>
 
-    <section class="container abstract-section" id="abstract" aria-labelledby="abstract-title">
-      <div class="section-heading"><span class="section-number">03 / ABSTRACT</span><h2 id="abstract-title">Reason first. Ground precisely.</h2></div>
-      <div class="abstract-copy">
-        <p>Existing temporal video grounding (TVG) benchmarks primarily focus on localizing target video segments according to descriptive text queries of the visual content. However, real-world queries are more diverse and often require the model to first understand the user’s intent before localization, such as finding visual evidence, identifying the cause of an event, or recalling a remembered moment, yet such queries remain largely overlooked.</p>
-        <p>To mitigate this gap, we introduce RVG-Bench, a benchmark for reasoning-driven audio-visual temporal grounding, where every query is constructed such that the target segment can only be identified through reasoning about the query’s underlying intent. We carefully construct the benchmark and rigorously verify its data quality to ensure models truly comprehend the audio-visual content. RVG-Bench comprises 1,255 videos and 1,890 query-interval pairs across eight reasoning types.</p>
-        <p>We evaluate 18 models and find that even Gemini-3-Pro achieves only 44.4 mIoU. Through a series of controlled analyses, including oracle-grounding probes and test-time scaling experiments, we systematically examine where and why current models struggle, providing insights for future model development.</p>
+    <section class="section" id="overview" aria-labelledby="overview-title">
+      <div class="container">
+        <h2 id="overview-title">Overview</h2>
+        <p class="section-intro">A query can describe an intent without naming the event. RVG-Bench asks a system to reason about what happened, resolve which event answers the query, and then localize it in time.</p>
+        <figure>
+          <a class="figure-link" href="assets/overview.png" aria-label="Open the full-size task illustration"><img src="assets/overview.png" alt="Comparison of descriptive and reasoning-driven grounding. A boy pours water on stairs; a later shot shows a burglar falling. The reasoning query asks for the action that caused the fall, requiring a link back to the earlier event." width="1812" height="639" loading="lazy"></a>
+          <figcaption>From descriptive to reasoning-driven grounding. The target event is inferred from the query’s intent using visual and audio evidence.</figcaption>
+        </figure>
+        <p class="reading-width example"><strong>Example query:</strong> “Locate the action that caused the burglar to fall.” The model must recognize the outcome, trace its cause, and localize the earlier action.</p>
       </div>
     </section>
 
-    <footer class="container site-footer">
-      <div class="footer-top"><a class="wordmark" href="#top">RVG-Bench</a><span>AIM3 Lab · Renmin University of China · Kling AI</span></div>
-      <p class="funding">This work was supported in part by the Beijing Major Science and Technology Project under Contract no. Z251100008425023.</p>
-    </footer>
+    <section class="section tinted" id="benchmark" aria-labelledby="benchmark-title">
+      <div class="container">
+        <h2 id="benchmark-title">Benchmark</h2>
+        <div class="reading-width">
+          <p>RVG-Bench contains <strong>1,255 videos</strong> and <strong>1,890 query–interval pairs</strong>, covering eight single-step reasoning types and <strong>302 multi-step queries</strong>.</p>
+          <dl class="taxonomy">
+            <dt>Intrinsic attributes</dt>
+            <dd>Infer what an event implies: a character’s mental state, an unexpected occurrence, or a symbolic meaning. Includes character-centric, anomaly, and symbolic reasoning.</dd>
+            <dt>Relative attributes</dt>
+            <dd>Compare candidate moments or reason about their positions in a sequence to identify the target. Includes comparative and ordinal reasoning.</dd>
+            <dt>Relations between events</dt>
+            <dd>Follow causal, temporal, or referential connections from the event in the query to the target event. Includes causal, sequential, and referential reasoning.</dd>
+          </dl>
+          <p><strong>Multi-step reasoning</strong> combines two or more of these operations within a single query.</p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container reading-width">
+      <p>AIM3 Lab · Renmin University of China · Kling AI</p>
+      <p class="funding">This work was supported in part by the Beijing Major Science and Technology Project under Contract no. Z251100008425023.</p>
+    </div>
+  </footer>
 </body>
 </html>
