@@ -13,7 +13,7 @@
   <title>RVG-Bench — Reasoning-Driven Audio-Visual Temporal Grounding</title>
   <link rel="canonical" href="https://fyrisk.github.io/RVG-Bench/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=68ef803469">
+  <link rel="stylesheet" href="styles.css?v=406e77d05c">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -57,7 +57,7 @@
         <div class="reading-width abstract-copy">
           <p>Existing temporal video grounding (TVG) benchmarks primarily focus on localizing target video segments according to descriptive text queries of the visual content. However, real-world queries are more diverse and often require the model to first understand the user’s intent before localization, such as finding visual evidence, identifying the cause of an event, or recalling a remembered moment, yet such queries remain largely overlooked.</p>
           <p>To mitigate this gap, we introduce RVG-Bench, a benchmark for reasoning-driven audio-visual temporal grounding, where every query is constructed such that the target segment can only be identified through reasoning about the query’s underlying intent. We carefully construct the benchmark and rigorously verify its data quality to ensure models truly comprehend the audio-visual content. RVG-Bench comprises 1,255 videos and 1,890 query-interval pairs across eight reasoning types.</p>
-          <p>We evaluate 18 models and find that even Gemini-3-Pro achieves only 44.4 mIoU. Through a series of controlled analyses, including oracle-grounding probes and test-time scaling experiments, we systematically examine where and why current models struggle, providing insights for future model development.</p>
+          <p>We evaluate 22 models and find that the strongest, Qwen3.8-Omni-Flash, achieves only 49.6 mIoU. Through a series of controlled analyses, including oracle-grounding probes and test-time scaling experiments, we systematically examine where and why current models struggle, providing insights for future model development.</p>
         </div>
       </div>
     </section>
@@ -95,15 +95,16 @@
     <section class="section results-section" id="results" aria-labelledby="results-title">
       <div class="container results-container">
         <h2 id="results-title">Main Results</h2>
-        <p class="section-intro">Evaluation of 18 models across eight single-step reasoning types and multi-step queries.</p>
+        <p class="section-intro">Evaluation of 22 models under Chain-of-Thought (CoT) prompting, covering eight single-step reasoning types and multi-step queries.</p>
         <p class="table-scroll-hint" id="table-scroll-hint">Scroll horizontally to view all columns.</p>
         <div class="results-scroll" tabindex="0" role="region" aria-label="Main results table, scroll horizontally to view all columns" aria-describedby="results-metrics">
           <table class="results-table">
             <caption>Main results on RVG-Bench</caption>
-            <colgroup><col class="model-column"><col span="12"></colgroup>
+            <colgroup><col class="model-column"><col class="input-column"><col span="12"></colgroup>
             <thead>
               <tr>
                 <th scope="col" rowspan="2" class="model-heading">Model</th>
+                <th scope="col" rowspan="2" class="input-heading">Input</th>
                 <th scope="colgroup" colspan="9">S-Step</th>
                 <th scope="col">M-Step</th>
                 <th scope="colgroup" colspan="2">Overall</th>
@@ -112,43 +113,46 @@
                 <th scope="col"><abbr title="Causal">Caus</abbr></th><th scope="col"><abbr title="Sequential">Seq</abbr></th><th scope="col"><abbr title="Referential">Ref</abbr></th><th scope="col"><abbr title="Character-centric">Char</abbr></th><th scope="col"><abbr title="Contextual Anomaly">Anom</abbr></th><th scope="col"><abbr title="Symbolic">Symb</abbr></th><th scope="col"><abbr title="Comparative">Comp</abbr></th><th scope="col"><abbr title="Ordinal">Ord</abbr></th><th scope="col">Overall</th><th scope="col">mIoU</th><th scope="col">mIoU</th><th scope="col">IoU@0.3</th>
               </tr>
             </thead>
-              <tbody>
-                <tr class="model-group"><th colspan="13" scope="rowgroup"><span>Closed-source models</span></th></tr>
-                <tr data-model="Gemini-3-Pro"><th scope="row">Gemini-3-Pro</th><td>31.3</td><td>63.5</td><td>44.4</td><td>34.6</td><td>41.4</td><td>51.0</td><td>68.3</td><td>45.1</td><td>46.1</td><td>35.8</td><td class="overall-score">44.4</td><td class="overall-score">61.1</td></tr>
-                <tr data-model="GPT-5.5"><th scope="row">GPT-5.5</th><td>28.2</td><td>50.9</td><td>38.0</td><td>32.8</td><td>43.4</td><td>47.9</td><td>50.1</td><td>32.6</td><td>39.5</td><td>32.8</td><td class="overall-score">38.5</td><td class="overall-score">55.5</td></tr>
-              </tbody>
-              <tbody>
-                <tr class="model-group"><th colspan="13" scope="rowgroup"><span>Open-source omni models</span></th></tr>
-                <tr data-model="ChronusOmni"><th scope="row">ChronusOmni</th><td>13.1</td><td>37.3</td><td>13.8</td><td>24.2</td><td>22.7</td><td>26.0</td><td>41.6</td><td>26.2</td><td>25.0</td><td>15.7</td><td class="overall-score">23.4</td><td class="overall-score">33.4</td></tr>
-                <tr data-model="Qwen3-Omni"><th scope="row">Qwen3-Omni</th><td>11.1</td><td>15.2</td><td>9.8</td><td>10.6</td><td>4.6</td><td>14.5</td><td>23.7</td><td>9.5</td><td>12.2</td><td>2.8</td><td class="overall-score">10.7</td><td class="overall-score">14.4</td></tr>
-                <tr data-model="Qwen2.5-Omni"><th scope="row">Qwen2.5-Omni</th><td>5.1</td><td>7.1</td><td>5.8</td><td>5.1</td><td>6.1</td><td>7.3</td><td>8.1</td><td>2.9</td><td>5.8</td><td>1.4</td><td class="overall-score">5.1</td><td class="overall-score">7.3</td></tr>
-                <tr data-model="HumanOmniV2"><th scope="row">HumanOmniV2</th><td>3.2</td><td>5.5</td><td>9.7</td><td>3.2</td><td>8.3</td><td>10.5</td><td>7.5</td><td>6.1</td><td>6.1</td><td>0.3</td><td class="overall-score">5.1</td><td class="overall-score">7.1</td></tr>
-                <tr data-model="Ola-7B"><th scope="row">Ola-7B</th><td>3.8</td><td>3.6</td><td>4.4</td><td>3.9</td><td>5.0</td><td>9.8</td><td>7.4</td><td>4.8</td><td>4.9</td><td>2.4</td><td class="overall-score">4.5</td><td class="overall-score">6.1</td></tr>
-                <tr data-model="MiniCPM-O-2.6"><th scope="row">MiniCPM-O-2.6</th><td>1.3</td><td>1.0</td><td>2.3</td><td>1.4</td><td>2.5</td><td>3.7</td><td>4.2</td><td>1.5</td><td>2.0</td><td>3.3</td><td class="overall-score">2.2</td><td class="overall-score">2.7</td></tr>
-              </tbody>
-              <tbody>
-                <tr class="model-group"><th colspan="13" scope="rowgroup"><span>Open-source VL models</span></th></tr>
-                <tr data-model="TimeLens-8B"><th scope="row">TimeLens-8B</th><td>19.7</td><td>44.1</td><td>26.5</td><td>29.3</td><td>27.0</td><td>43.9</td><td>43.7</td><td>29.3</td><td>31.9</td><td>21.3</td><td class="overall-score">30.1</td><td class="overall-score">41.7</td></tr>
-                <tr data-model="Qwen3-VL-8B"><th scope="row">Qwen3-VL-8B</th><td>14.5</td><td>41.0</td><td>24.3</td><td>21.8</td><td>26.8</td><td>47.6</td><td>38.4</td><td>25.0</td><td>28.3</td><td>16.4</td><td class="overall-score">26.3</td><td class="overall-score">35.0</td></tr>
-                <tr data-model="TimeLens-7B"><th scope="row">TimeLens-7B</th><td>13.0</td><td>33.9</td><td>16.8</td><td>21.2</td><td>20.5</td><td>35.5</td><td>35.6</td><td>20.0</td><td>23.5</td><td>13.1</td><td class="overall-score">21.8</td><td class="overall-score">31.1</td></tr>
-                <tr data-model="Time-R1-7B"><th scope="row">Time-R1-7B</th><td>14.4</td><td>28.5</td><td>16.7</td><td>19.0</td><td>15.0</td><td>25.5</td><td>34.3</td><td>20.2</td><td>21.1</td><td>12.7</td><td class="overall-score">19.7</td><td class="overall-score">29.4</td></tr>
-                <tr data-model="TRACE"><th scope="row">TRACE</th><td>12.7</td><td>18.2</td><td>12.6</td><td>13.7</td><td>6.0</td><td>21.1</td><td>25.2</td><td>12.4</td><td>14.9</td><td>10.1</td><td class="overall-score">14.1</td><td class="overall-score">20.8</td></tr>
-                <tr data-model="Qwen2.5-VL-7B"><th scope="row">Qwen2.5-VL-7B</th><td>11.2</td><td>21.7</td><td>13.5</td><td>12.6</td><td>9.2</td><td>18.2</td><td>24.8</td><td>16.3</td><td>15.6</td><td>2.3</td><td class="overall-score">13.4</td><td class="overall-score">20.4</td></tr>
-                <tr data-model="VideoChat-R1"><th scope="row">VideoChat-R1</th><td>16.4</td><td>11.5</td><td>10.7</td><td>11.4</td><td>8.2</td><td>17.3</td><td>17.1</td><td>10.5</td><td>13.0</td><td>6.6</td><td class="overall-score">11.9</td><td class="overall-score">17.4</td></tr>
-                <tr data-model="TimeSuite"><th scope="row">TimeSuite</th><td>5.5</td><td>13.8</td><td>6.6</td><td>8.2</td><td>10.9</td><td>15.1</td><td>20.5</td><td>9.4</td><td>10.6</td><td>3.6</td><td class="overall-score">9.4</td><td class="overall-score">13.8</td></tr>
-                <tr data-model="Video-R1-7B"><th scope="row">Video-R1-7B</th><td>7.0</td><td>8.1</td><td>7.9</td><td>4.1</td><td>6.9</td><td>11.9</td><td>9.7</td><td>5.0</td><td>7.3</td><td>1.8</td><td class="overall-score">6.4</td><td class="overall-score">9.3</td></tr>
-                <tr data-model="MiMo-VL-7B-RL"><th scope="row">MiMo-VL-7B-RL</th><td>2.6</td><td>0.8</td><td>3.2</td><td>2.0</td><td>1.3</td><td>3.5</td><td>2.3</td><td>1.1</td><td>2.0</td><td>0.2</td><td class="overall-score">1.7</td><td class="overall-score">2.4</td></tr>
-              </tbody>
-              <tbody>
-                <tr class="model-group"><th colspan="13" scope="rowgroup"><span>Human reference (200-example audit subset)</span></th></tr>
-                <tr data-model="Human baseline" class="human-result"><th scope="row">Human baseline</th><td>63.9</td><td>85.6</td><td>71.7</td><td>58.8</td><td>56.6</td><td>74.2</td><td>69.4</td><td>67.9</td><td>68.5</td><td>52.4</td><td class="overall-score">65.3</td><td class="overall-score">78.5</td></tr>
-              </tbody>
+            <tbody>
+              <tr class="model-group"><th colspan="14" scope="rowgroup"><span>API-based models</span></th></tr>
+              <tr data-model="Qwen3.8-Omni-Flash"><th scope="row">Qwen3.8-Omni-Flash</th><td>AV</td><td>38.5</td><td>71.1</td><td>47.1</td><td>41.9</td><td>43.8</td><td>58.6</td><td>62.9</td><td>51.9</td><td>51.3</td><td>40.6</td><td class="overall-score">49.6</td><td class="overall-score">68.0</td></tr>
+              <tr data-model="Seed2.0-Lite"><th scope="row">Seed2.0-Lite</th><td>AV</td><td>36.8</td><td>64.2</td><td>50.2</td><td>40.0</td><td>44.6</td><td>56.2</td><td>66.7</td><td>42.7</td><td>49.0</td><td>36.9</td><td class="overall-score">47.0</td><td class="overall-score">62.6</td></tr>
+              <tr data-model="Gemini-3-Pro"><th scope="row">Gemini-3-Pro</th><td>AV</td><td>31.3</td><td>63.5</td><td>44.4</td><td>34.6</td><td>41.4</td><td>51.0</td><td>68.3</td><td>45.1</td><td>46.1</td><td>35.8</td><td class="overall-score">44.4</td><td class="overall-score">61.1</td></tr>
+              <tr data-model="Seed2.0-Pro"><th scope="row">Seed2.0-Pro</th><td>V</td><td>28.9</td><td>57.9</td><td>42.3</td><td>36.4</td><td>40.8</td><td>48.8</td><td>58.6</td><td>36.8</td><td>42.6</td><td>38.0</td><td class="overall-score">41.9</td><td class="overall-score">58.2</td></tr>
+              <tr data-model="GPT-5.5"><th scope="row">GPT-5.5</th><td>V</td><td>28.2</td><td>50.9</td><td>38.0</td><td>32.8</td><td>43.4</td><td>47.9</td><td>50.1</td><td>32.6</td><td>39.5</td><td>32.8</td><td class="overall-score">38.5</td><td class="overall-score">55.5</td></tr>
+              <tr data-model="Qwen3.8-Flash"><th scope="row">Qwen3.8-Flash</th><td>V</td><td>26.5</td><td>48.1</td><td>40.6</td><td>33.4</td><td>31.5</td><td>49.2</td><td>57.9</td><td>33.7</td><td>38.6</td><td>36.2</td><td class="overall-score">38.2</td><td class="overall-score">52.8</td></tr>
+            </tbody>
+            <tbody>
+              <tr class="model-group"><th colspan="14" scope="rowgroup"><span>Locally evaluated omni models</span></th></tr>
+              <tr data-model="ChronusOmni"><th scope="row">ChronusOmni</th><td>AV</td><td>13.1</td><td>37.3</td><td>13.8</td><td>24.2</td><td>22.7</td><td>26.0</td><td>41.6</td><td>26.2</td><td>25.0</td><td>15.7</td><td class="overall-score">23.4</td><td class="overall-score">33.4</td></tr>
+              <tr data-model="Qwen3-Omni"><th scope="row">Qwen3-Omni</th><td>AV</td><td>11.1</td><td>15.2</td><td>9.8</td><td>10.6</td><td>4.6</td><td>14.5</td><td>23.7</td><td>9.5</td><td>12.2</td><td>2.8</td><td class="overall-score">10.7</td><td class="overall-score">14.4</td></tr>
+              <tr data-model="Qwen2.5-Omni"><th scope="row">Qwen2.5-Omni</th><td>AV</td><td>5.1</td><td>7.1</td><td>5.8</td><td>5.1</td><td>6.1</td><td>7.3</td><td>8.1</td><td>2.9</td><td>5.8</td><td>1.4</td><td class="overall-score">5.1</td><td class="overall-score">7.3</td></tr>
+              <tr data-model="HumanOmniV2"><th scope="row">HumanOmniV2</th><td>AV</td><td>3.2</td><td>5.5</td><td>9.7</td><td>3.2</td><td>8.3</td><td>10.5</td><td>7.5</td><td>6.1</td><td>6.1</td><td>0.3</td><td class="overall-score">5.1</td><td class="overall-score">7.1</td></tr>
+              <tr data-model="Ola-7B"><th scope="row">Ola-7B</th><td>AV</td><td>3.8</td><td>3.6</td><td>4.4</td><td>3.9</td><td>5.0</td><td>9.8</td><td>7.4</td><td>4.8</td><td>4.9</td><td>2.4</td><td class="overall-score">4.5</td><td class="overall-score">6.1</td></tr>
+              <tr data-model="MiniCPM-O-2.6"><th scope="row">MiniCPM-O-2.6</th><td>AV</td><td>1.3</td><td>1.0</td><td>2.3</td><td>1.4</td><td>2.5</td><td>3.7</td><td>4.2</td><td>1.5</td><td>2.0</td><td>3.3</td><td class="overall-score">2.2</td><td class="overall-score">2.7</td></tr>
+            </tbody>
+            <tbody>
+              <tr class="model-group"><th colspan="14" scope="rowgroup"><span>Locally evaluated VL models</span></th></tr>
+              <tr data-model="TimeLens-8B"><th scope="row">TimeLens-8B</th><td>V</td><td>19.7</td><td>44.1</td><td>26.5</td><td>29.3</td><td>27.0</td><td>43.9</td><td>43.7</td><td>29.3</td><td>31.9</td><td>21.3</td><td class="overall-score">30.1</td><td class="overall-score">41.7</td></tr>
+              <tr data-model="Qwen3-VL-8B"><th scope="row">Qwen3-VL-8B</th><td>V</td><td>14.5</td><td>41.0</td><td>24.3</td><td>21.8</td><td>26.8</td><td>47.6</td><td>38.4</td><td>25.0</td><td>28.3</td><td>16.4</td><td class="overall-score">26.3</td><td class="overall-score">35.0</td></tr>
+              <tr data-model="TimeLens-7B"><th scope="row">TimeLens-7B</th><td>V</td><td>13.0</td><td>33.9</td><td>16.8</td><td>21.2</td><td>20.5</td><td>35.5</td><td>35.6</td><td>20.0</td><td>23.5</td><td>13.1</td><td class="overall-score">21.8</td><td class="overall-score">31.1</td></tr>
+              <tr data-model="Time-R1-7B"><th scope="row">Time-R1-7B</th><td>V</td><td>14.4</td><td>28.5</td><td>16.7</td><td>19.0</td><td>15.0</td><td>25.5</td><td>34.3</td><td>20.2</td><td>21.1</td><td>12.7</td><td class="overall-score">19.7</td><td class="overall-score">29.4</td></tr>
+              <tr data-model="TRACE"><th scope="row">TRACE</th><td>V</td><td>12.7</td><td>18.2</td><td>12.6</td><td>13.7</td><td>6.0</td><td>21.1</td><td>25.2</td><td>12.4</td><td>14.9</td><td>10.1</td><td class="overall-score">14.1</td><td class="overall-score">20.8</td></tr>
+              <tr data-model="Qwen2.5-VL-7B"><th scope="row">Qwen2.5-VL-7B</th><td>V</td><td>11.2</td><td>21.7</td><td>13.5</td><td>12.6</td><td>9.2</td><td>18.2</td><td>24.8</td><td>16.3</td><td>15.6</td><td>2.3</td><td class="overall-score">13.4</td><td class="overall-score">20.4</td></tr>
+              <tr data-model="VideoChat-R1"><th scope="row">VideoChat-R1</th><td>V</td><td>16.4</td><td>11.5</td><td>10.7</td><td>11.4</td><td>8.2</td><td>17.3</td><td>17.1</td><td>10.5</td><td>13.0</td><td>6.6</td><td class="overall-score">11.9</td><td class="overall-score">17.4</td></tr>
+              <tr data-model="TimeSuite"><th scope="row">TimeSuite</th><td>V</td><td>5.5</td><td>13.8</td><td>6.6</td><td>8.2</td><td>10.9</td><td>15.1</td><td>20.5</td><td>9.4</td><td>10.6</td><td>3.6</td><td class="overall-score">9.4</td><td class="overall-score">13.8</td></tr>
+              <tr data-model="Video-R1-7B"><th scope="row">Video-R1-7B</th><td>V</td><td>7.0</td><td>8.1</td><td>7.9</td><td>4.1</td><td>6.9</td><td>11.9</td><td>9.7</td><td>5.0</td><td>7.3</td><td>1.8</td><td class="overall-score">6.4</td><td class="overall-score">9.3</td></tr>
+              <tr data-model="MiMo-VL-7B-RL"><th scope="row">MiMo-VL-7B-RL</th><td>V</td><td>2.6</td><td>0.8</td><td>3.2</td><td>2.0</td><td>1.3</td><td>3.5</td><td>2.3</td><td>1.1</td><td>2.0</td><td>0.2</td><td class="overall-score">1.7</td><td class="overall-score">2.4</td></tr>
+            </tbody>
+            <tbody>
+              <tr class="model-group"><th colspan="14" scope="rowgroup"><span>Human reference on the validated audit subset</span></th></tr>
+              <tr data-model="Human baseline" class="human-result"><th scope="row">Human baseline</th><td>AV</td><td>63.9</td><td>85.6</td><td>71.7</td><td>58.8</td><td>56.6</td><td>74.2</td><td>69.4</td><td>67.9</td><td>68.5</td><td>52.4</td><td class="overall-score">65.3</td><td class="overall-score">78.5</td></tr>
+            </tbody>
           </table>
         </div>
         <div class="results-notes reading-width">
-          <p id="results-metrics"><strong>Metrics.</strong> S-Step and M-Step denote single- and multi-step reasoning. All values are percentages; every column reports mIoU except IoU@0.3 (recall at IoU ≥ 0.3). Higher is better. Overall scores are sample-count-weighted.</p>
+          <p id="results-metrics"><strong>Metrics.</strong> Input denotes visual (V) or audio-visual (AV) input. S-Step and M-Step denote single- and multi-step reasoning. All numeric values are percentages; every score column reports mIoU except IoU@0.3 (recall at IoU ≥ 0.3). Higher is better. Overall scores are sample-count-weighted.</p>
           <p><strong>Types.</strong> Caus: causal; Seq: sequential; Ref: referential; Char: character-centric; Anom: contextual anomaly; Symb: symbolic; Comp: comparative; Ord: ordinal.</p>
-          <p><strong>GPT-5.5.</strong> Scores use the same fixed intersection of 1,699 samples not blocked by the provider across Direct, CoT, Ground, and 2-step. Samples outside this intersection are excluded from each setting.</p>
           <p><strong>Human reference.</strong> Two annotators independently evaluate a separate stratified subset of 200 queries: 20 per single-step type and 40 multi-step. Their IoUs with the ground truth are averaged per query before aggregation.</p>
         </div>
       </div>
